@@ -4,6 +4,7 @@ const connectDB = require('./config/connectDB');
 const { getTodos, createTodo, editTodo } = require('./controller/todo.controller');
 const { getUserById, userLogin, userRegister } = require('./controller/user.controller');
 const isAuth = require('./jwt/passport-setup');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 
@@ -20,6 +21,9 @@ Router.patch('/api/edit/:_id', editTodo);
 Router.get('/user/:_id', isAuth(), getUserById);
 Router.post('/api/login', userLogin);
 Router.post('/api/register', userRegister);
+Router.get('/api/current-user', isAuth(), (req, res) => {
+  res.json(req.user);
+});
 
 app.use('/', Router);
 

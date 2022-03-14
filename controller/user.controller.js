@@ -29,7 +29,8 @@ exports.userLogin = async (req, res) => {
       id: user._id,
       email: user.email
     };
-    const token = await jwt.sign(payload, process.env.secretOrPrivateKey);
+
+    const token = jwt.sign(payload, process.env.secretOrPrivateKey);
 
     res.status(200).json({ token: `Bearer ${token}`, user });
   } catch (error) {
