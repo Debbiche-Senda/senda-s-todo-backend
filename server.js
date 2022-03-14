@@ -13,13 +13,13 @@ connectDB();
 
 app.use(express.json());
 
-Router.get('/todo', getTodos);
-Router.post('/todo', createTodo);
-Router.patch('/edit/:_id', editTodo);
+Router.get('/api/todo', getTodos);
+Router.post('/api/todo', createTodo);
+Router.patch('/api/edit/:_id', editTodo);
 
 Router.get('/user/:_id', isAuth(), getUserById);
-Router.post('/login', userLogin);
-Router.post('/register', userRegister);
+Router.post('/api/login', userLogin);
+Router.post('/api/register', userRegister);
 
 app.use('/', Router);
 
